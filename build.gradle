@@ -1,0 +1,69 @@
+buildscript {
+    repositories {
+        maven { url "http://repo.spring.io/libs-snapshot" }
+        mavenLocal()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.0.0.RC3")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+
+def version = [
+        mybatis: '3.2.2'
+        ,mybatis_Spring: '1.2.2'
+        ,mysql: '5.1.26'
+        ,spring: '1.2.3.RELEASE'
+]
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile "org.springframework.boot:spring-boot-starter-web:${version.spring}"
+    compile ("org.springframework.boot:spring-boot-starter-tomcat")
+    compile("org.springframework:spring-webmvc")
+    compile ("org.apache.httpcomponents:httpclient")
+
+
+    compile("org.springframework:spring-jdbc:4.0.0.RELEASE")
+
+    compile("javax.inject:javax.inject:1")
+    compile("mysql:mysql-connector-java:5.1.6")
+//
+    compile("org.mybatis:mybatis:3.2.4")
+    compile("org.mybatis:mybatis-spring:1.2.2")
+
+    compile("org.apache.tomcat:tomcat-jdbc:7.0.50")
+
+    testCompile("junit:junit:4.11")
+    testCompile("org.springframework:spring-test:4.0.1.RELEASE")
+
+}
+
+// JAVA 컴파일시 인코딩 설정
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+// 프로젝트 초기화
+// 1. java source directory 생성 : src/main/java, src/test/java
+// 2. resource directory 생성    : src/main/resource, src/test/resource
+// 3. web source directory 생성  : src/main/webapp, src/main/webapp/WEB-INF
+task initProject(description: 'initialize project') << {
+    createDir = {
+        println "create source directory: $it"
+        it.mkdirs()
+    }
+    sourceSets*.java.srcDirs*.each createDir
+    sourceSets*.resources.srcDirs*.each createDir
+    createDir webAppDir
+    createDir new File(webAppDir, '/WEB-INF')
+}
+
+
