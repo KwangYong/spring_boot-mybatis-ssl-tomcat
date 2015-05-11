@@ -22,7 +22,7 @@ import javax.annotation.PreDestroy;
 @Configuration
 @EnableAutoConfiguration(exclude = DataSourceAutoConfiguration.class )
 @EnableConfigurationProperties(TomcatPoolDataSourceProperties.class)
-@MapperScan("com.pky1030.persistence")
+@MapperScan("co.kr.pky.spring.persistence")
 public class DataSourceConfig {
 
     @Autowired

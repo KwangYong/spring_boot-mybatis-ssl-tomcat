@@ -55,7 +55,8 @@ dependencies {
 // 1. java source directory 생성 : src/main/java, src/test/java
 // 2. resource directory 생성    : src/main/resource, src/test/resource
 // 3. web source directory 생성  : src/main/webapp, src/main/webapp/WEB-INF
-task initProject(description: 'initialize project') << {
+
+/*task initProject(description: 'initialize project') << {
     createDir = {
         println "create source directory: $it"
         it.mkdirs()
@@ -64,6 +65,5 @@ task initProject(description: 'initialize project') << {
     sourceSets*.resources.srcDirs*.each createDir
     createDir webAppDir
     createDir new File(webAppDir, '/WEB-INF')
-}
-
+}*/
 

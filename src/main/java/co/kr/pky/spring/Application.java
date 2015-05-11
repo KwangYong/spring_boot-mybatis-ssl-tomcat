@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 @EnableAutoConfiguration(exclude = DataSourceAutoConfiguration.class)
 @SpringBootApplication
 @Configuration
-@ComponentScan(basePackages = "com.pky1030")
+@ComponentScan(basePackages = "co.kr.pky")
 
 public class Application {
 
