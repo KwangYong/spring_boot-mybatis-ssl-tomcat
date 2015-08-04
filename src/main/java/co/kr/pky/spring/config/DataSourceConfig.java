@@ -1,5 +1,6 @@
 package co.kr.pky.spring.config;
 
+
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.mybatis.spring.SqlSessionFactoryBean;
@@ -26,6 +27,8 @@ import javax.annotation.PreDestroy;
 public class DataSourceConfig {
 
     @Autowired
+    PropertiesLoader propertiesLoader;
+    @Autowired
     private TomcatPoolDataSourceProperties tomcatPoolDataSourceProperties;
 
     private org.apache.tomcat.jdbc.pool.DataSource pool;
@@ -34,6 +37,8 @@ public class DataSourceConfig {
     public DataSource dataSource() {
 
         TomcatPoolDataSourceProperties config = tomcatPoolDataSourceProperties;
+
+
 
         this.pool = new org.apache.tomcat.jdbc.pool.DataSource();
 
@@ -52,6 +57,7 @@ public class DataSourceConfig {
         this.pool.setTestOnBorrow(config.isTestOnBorrow());
         this.pool.setTestOnReturn(config.isTestOnReturn());
         this.pool.setValidationQuery(config.getValidationQuery());
+
         return this.pool;
     }
 
