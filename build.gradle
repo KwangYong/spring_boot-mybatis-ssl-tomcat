@@ -8,8 +8,17 @@ buildscript {
     }
 }
 
+
 apply plugin: 'java'
+apply plugin: 'eclipse'
 apply plugin: 'idea'
+apply plugin: 'spring-boot'
+
+jar {
+    baseName = 'gs-spring-boot'
+    version =  '0.1.0'
+}
+
 
 def version = [
         mybatis: '3.2.2'
@@ -30,9 +39,6 @@ dependencies {
     compile "org.springframework.boot:spring-boot-starter-web:${version.spring}"
     compile ("org.springframework.boot:spring-boot-starter-tomcat")
     compile("org.springframework:spring-webmvc")
-    compile ("org.apache.httpcomponents:httpclient")
-
-
     compile("org.springframework:spring-jdbc:4.0.0.RELEASE")
 
     compile("javax.inject:javax.inject:1")
@@ -66,4 +72,3 @@ dependencies {
     createDir webAppDir
     createDir new File(webAppDir, '/WEB-INF')
 }*/
-
